@@ -70,7 +70,7 @@ $(document).ready(function () {
 						google.maps.event.addListener(marker, 'click', function () {
 							var idx = markers.indexOf(this);
 							listing = listings[idx];			
-							infoWindow.setOptions({"position": this.position, "content": "<div id='total'><img src=\"" + listing.images.url[0] + '" style="width:50px;height:50px;float:left; margin: 0 10px 0 0;" /><div id="textform">' + listing.name + '<br>' + '<a href="tel:' + $.trim(listing.phone) + '">' + $.trim(listing.phone) + '</a>' + '<br><a href="#profile-page" align=" right;">More Details</a></div></div>'}); 
+							infoWindow.setOptions({"position": this.position, "content": "<div id='total'><img src=\"" + listing.images.url[0] + '" style="width:50px;height:50px;float:left; margin: 0 10px 0 0;" /><div id="textform">' + listing.name + '<br>' + '<a href="tel:' + $.trim(listing.phone) + '">' + $.trim(listing.phone) + '</a>' + '<br><a href="#profile-page" id="profileButton" align=" right;">More Details</a></div></div>'}); 
 							infoWindow.open(map, this);
 						});
 						bounds.extend(latlng);
