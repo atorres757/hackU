@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <title>ForRent.com</title>
+        <link rel="stylesheet" href="https://s3.amazonaws.com/codiqa-cdn/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+        <link rel="stylesheet" href="map.css" />
+        <link rel="shortcut icon" href="http://images.forrent.com/sites/frcMobile/design/favicon.ico">
+        <script src="https://s3.amazonaws.com/codiqa-cdn/jquery-1.7.2.min.js"></script>
+        <script src="https://s3.amazonaws.com/codiqa-cdn/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?&sensor=false"></script>
+        <script type="text/javascript" src="map.js"></script>
+    </head>
+    <body>
+        <!-- Home -->
+        <div data-role="page" id="searchpage">
+            <div id="Header" data-theme="b" data-role="header" data-position="fixed">
+                <h1>
+                    Apartment Bayou
+                </h1>
+            </div>
+            <div data-role="content">
+                <div id="SearchBar" data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <label for="SearchBar">
+                        </label>
+                        <input name="SearchBar" id="searchfield" placeholder="Where do you want to live?" type="search" />
+                    </fieldset>
+                </div>
+				<a href="#map-page" data-role="button" id="sbutton">Search</a>
+            </div>
+            <div data-theme="b" data-role="footer" data-position="fixed">
+                <h3>
+                    <img src="http://images.frmonline.com/sites/frcMobile/design/frc-logo-forrent-290x36.png" class="logo">
+                </h3>
+            </div>
+        </div>
+		
+		<div data-role="page" id="map-page">
+			<div id="Header" data-theme="b" data-role="header" data-position="fixed">
+				<h5>
+					<img src="http://images.frmonline.com/sites/frcMobile/design/frc-logo-forrent-290x36.png" class="logo">
+				</h5>
+				<input type="search" id="mapSearchBox" class="ui-input-text" placeholder="Search By Location" />
+			</div>
+			<div data-role="content" >
+				<div id="map-canvas" class="ui-content"></div>
+			</div>
+		</div>
+        
+        <div data-role="page" id="profile-page">
+            <div id="Header" data-theme="b" data-role="header" data-position="fixed">
+				<h5>
+					<img src="http://images.frmonline.com/sites/frcMobile/design/frc-logo-forrent-290x36.png" class="logo">
+				</h5>
+            </div>
+            <div data-role="content">
+                
+            </div>
+        </div>
+    </body>
+</html>
