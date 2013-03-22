@@ -89,8 +89,8 @@ $(document).ready(function () {
 		map.setZoom(12);
 	});
 	
-	$('#mapSearchBox').bind("click change", function (){
-		var sval = $(this).val();
+	$('#mapSButton').bind("click", function (){
+		var sval = $('#mapSearchBox').val();
 		var nearVal = $('#searchfieldBy').val();
 		getLatLong(sval, nearVal);
 		map.setZoom(12);
