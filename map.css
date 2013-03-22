@@ -37,3 +37,9 @@ body { height: 100%;
 	width: 200px;
 	padding: 10px;
 }
+#ptextForm{
+	width: 90%;
+	margin: 0 10px 0 10px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:1.5em;
+}
