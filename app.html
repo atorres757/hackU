@@ -11,7 +11,7 @@
         <link rel="shortcut icon" href="http://images.forrent.com/sites/frcMobile/design/favicon.ico">
         <script src="https://s3.amazonaws.com/codiqa-cdn/jquery-1.7.2.min.js"></script>
         <script src="https://s3.amazonaws.com/codiqa-cdn/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?&sensor=false"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
         <script type="text/javascript" src="map.js"></script>
     </head>
     <body>
@@ -45,6 +45,7 @@
 					<img src="http://images.frmonline.com/sites/frcMobile/design/frc-logo-forrent-290x36.png" class="logo">
 				</h5>
 				<input type="search" id="mapSearchBox" class="ui-input-text" placeholder="Search By Location" />
+                <input name="SearchBar" id="searchfieldBy" placeholder="What do you want to live by?" type="search" />
 			</div>
 			<div data-role="content" >
 				<div id="map-canvas" class="ui-content"></div>

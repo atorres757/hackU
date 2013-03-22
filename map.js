@@ -12,19 +12,61 @@ $(document).ready(function () {
 		google.maps.event.trigger(map, 'resize');
 	}
 
-	function getLatLong(locationString)	{
+	function placeAptMarkers(results){
+		var listings = [], markers = [];
+		for(var idx in results){
+			var result = results[idx];
+			var iconImg = "http://maps.google.com/mapfiles/kml/pal2/icon61.png";
+			var marker = new google.maps.Marker({'position': new google.maps.LatLng(result.latitude, result.longitude), 'map':map, 'icon':iconImg});
+			google.maps.event.addListener(marker, 'click', function () {
+				var idx = markers.indexOf(this), listing = listings[idx];
+				var infoWindow = new google.maps.InfoWindow({"position":new google.maps.LatLng(listing.latitude, listing.longitude), 
+				"content": "<img src=\"" + listing.images.url[0] + '" style="width:50px;height:50px;float:left;" /></br>' + listing.name + '</br>' + listing.phone});
+				infoWindow.open(map);
+				console.log();
+			});
+			listings.push(result);
+			markers.push(marker);
+		}
+	}
+	
+	function placeBayouMarkers(results){
+		for(idx in results){
+			var result = results[idx];
+			var pos = new google.maps.LatLng(result.geometry.location.kb, result.geometry.location.lb);
+			var icon = {};
+			icon.url = result.icon;
+			icon.scaledSize = new google.maps.Size(30, 30);
+			var marker = new google.maps.Marker({'position': pos, 'map':map, 'icon':icon});
+		}
+	}
 				
+	function getLatLong(locationString, placesNearString){
 				var geocoder = new google.maps.Geocoder();
 				geocoder.geocode({address:locationString}, function(results, status){
 				locate = results[0];
-				var latlongObject = {};
-				latlongObject.lat = locate.geometry.location.lat();
-				latlongObject.lng = locate.geometry.location.lng();
+				locationLatLon = new google.maps.LatLng(locate.geometry.location.lat(), locate.geometry.location.lng());
+				
+				google.maps.event.trigger(map, 'resize');
+				map.setCenter(locationLatLon);
+				
+				if(typeof placesNearString == "string"){
+				    var request = {
+			    		location: locationLatLon,
+					    radius: '500',
+					    query: placesNearString
+				    };
+					service = new google.maps.places.PlacesService(map);
+					service.textSearch(request, function(results, status){
+						placeBayouMarkers(results);
+					});
+				}
+				
 				
 				$.ajax({
 				   type: "GET",
 				   url: "http://204.154.41.98/hackuFE/search-by-latlong.php",
-				   data: latlongObject,
+				   data: {lat : locationLatLon.lat(), lon:locationLatLon.lng()},
 				   cache: false,
 				   dataType: 'jsonp',
 				   error: function () {
@@ -65,7 +107,8 @@ $(document).ready(function () {
 	
 	$('#mapSearchBox').bind("click change", function (){
 		var sval = $(this).val();
-		getLatLong(sval);
+		var nearVal = $('#searchfieldBy').val();
+		getLatLong(sval, nearVal);
 		map.setZoom(12);
 	});
 	
