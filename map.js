@@ -63,12 +63,13 @@ $(document).ready(function () {
 					var results = response.results, listings = [], bounds = new google.maps.LatLngBounds();
 					for(var idx in results){
 						var result = results[idx], latlng = new google.maps.LatLng(result.latitude, result.longitude);
-						var image = "http://maps.google.com/mapfiles/kml/pal2/icon61.png";
+						var image = "http://png.findicons.com/files/icons/951/google_maps/32/apartment.png";
 						var marker = new google.maps.Marker({'position': latlng, 'map':map, 'icon': image});
 						listings.push(result);
 						markers.push(marker);
 						google.maps.event.addListener(marker, 'click', function () {
-							var idx = markers.indexOf(this), listing = listings[idx];			
+							var idx = markers.indexOf(this);
+							listing = listings[idx];			
 							infoWindow.setOptions({"position": this.position, "content": "<div id='total'><img src=\"" + listing.images.url[0] + '" style="width:50px;height:50px;float:left; margin: 0 10px 0 0;" /><div id="textform">' + listing.name + '<br>' + '<a href="tel:' + $.trim(listing.phone) + '">' + $.trim(listing.phone) + '</a>' + '<br><a href="#profile-page" align=" right;">More Details</a></div></div>'}); 
 							infoWindow.open(map, this);
 						});
@@ -97,7 +98,7 @@ $(document).ready(function () {
 	});
 	
 	$("#profileButton").live('click', function(){
-		$('#profile-data').html("<img src=\"" + listing.images.url[0] + '" style="width:80%;margin: 0 10px 0 10px;" /><div id="ptextForm">' + listing.name + '<br>' + listing.phone + '<br></div></div>');
+		$('#profile-data').html("<img src=\"" + listing.images.url[0] + '" style="width:80%;margin: 0 10px 0 10px;" /><div id="ptextForm">' + listing.name + '<br>'+ listing.address1 + '<br>' + ' ' + listing.zip + '<br>' + listing.phone + '<br></div></div>');
 	});
 	
 	initializeMap();
