@@ -161,8 +161,8 @@
 	}
 
 	$xml = '<request>
-		<user>feed_unitTest_30</user>
-		<pw>Howd3!</pw>
+		<user>####</user>
+		<pw>####</pw>
 		<command name="searchByLatLng">
 		<arg name="latitude">'.$latitude.'</arg>
 		<arg name="longitude">'.$longitude.'</arg>
